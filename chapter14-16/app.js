@@ -42,6 +42,7 @@ for (x in students) {
 var colors = ["Red", "Green", "Blue", "Orange", "Pink", "Yellow"];
 var user_colors = []
 document.write("<h2>Task 9</h2>");
+document.write("Task 11 also work like this Selected cities instead of colors");
 document.write("<h4>Select Colors</h4>");
 for (i in colors) {
     document.write('<input type="checkbox" name="colors" value="' + colors[i] + '"> ' + colors[i] + '<br>');
@@ -49,6 +50,42 @@ for (i in colors) {
 document.write('<input type="button" value="Add Before" onclick="add_color(1)">');
 document.write('<input type="button" value="Add After" onclick="add_color(0)" >');
 document.write("<div id='show_colors'></div>")
+
+//task 10
+var student_scores = [320, 230, 480, 120];
+document.write("<h2>Task 10</h2>");
+document.write("<h4>Student Scores</h4><b>Un-Sorted : </b>");
+document.write(student_scores.join(","));
+document.write("<br><b>Sorted : </b>");
+document.write(student_scores.sort().join(","));
+
+//task 12
+var sentence = ["This", "is", "a", "cat."];
+document.write("<h2>Task 12</h2>");
+document.write("<h4>String Joined</h4><b>Array : </b>");
+document.write(sentence.join(","));
+document.write("<br><b>String : </b>");
+document.write(sentence.join(" "));
+
+//task13
+var devices = ["CPU", "Monitor", "Mouse", "Keybord", "Printer", "Scanner", "Webcam"];
+document.write("<h2>Task 13</h2>");
+document.write("<h4>LIFO and FIFO</h4><b>Array : </b>" + devices.join(","));
+document.write("<br><b>LIFO : </b>" + devices.pop());
+document.write("<br><b>LIFO : </b>" + devices.pop());
+document.write("<br><b>Array : </b>" + devices.join(","));
+document.write("<br><b>FIFO : </b>" + devices.shift());
+document.write("<br><b>FIFO : </b>" + devices.shift());
+document.write("<br><b>Array : </b>" + devices.join(","));
+
+
+
+
+
+
+
+
+
 
 
 
@@ -60,10 +97,14 @@ document.write("<div id='show_colors'></div>")
 //task9 functions
 function show_colors() {
     var color_box = document.getElementById("show_colors");
-    color_box.innerHTML = "<h3>User Colors</h3>";
+    var showcolors = "<h3>User Colors</h3>";
+    showcolors = showcolors + "<table>";
     for (i in user_colors) {
-        color_box.innerHTML = color_box.innerHTML + "<h5>" + user_colors[i] + '</h5>';
+        showcolors = showcolors + "<tr style='color:" + user_colors[i] + "'><td>" + user_colors[i] + "</td>";
+        showcolors = showcolors + '<td><input value="Delete" type="button" onclick="user_color_delete(' + i + ')"></td></tr>';
     }
+    showcolors = showcolors + "</table>";
+    color_box.innerHTML = showcolors;
 }
 
 function add_color(add_before) {
@@ -84,5 +125,13 @@ function add_color(add_before) {
         }
     }
 
+    show_colors();
+}
+
+function user_color_delete(del_val) {
+    const index = user_colors.indexOf(user_colors[del_val]);
+    if (index > -1) {
+        user_colors.splice(index, 1);
+    }
     show_colors();
 }
